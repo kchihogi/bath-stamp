@@ -21,6 +21,7 @@ table {
     outline: 2px solid #ddd;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
 }
 th {
     color: #000;
@@ -72,4 +73,8 @@ td.today {
 }
 #next {
     float: right;
+}
+
+.stamp {
+  width: 60%;
 }

@@ -63,7 +63,7 @@ function createProcess(year, month) {
                   && month == (today.getMonth())
                   && count == today.getDate()){
                     stamp = '<img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
-                    calendar += "<td class='today'>" + count + stamp +"</td>";
+                    calendar += "<td class='today'>" + count +"<br>"+ stamp +"</td>";
                 } else {
                     calendar += "<td>" + count + "</td>";
                 }

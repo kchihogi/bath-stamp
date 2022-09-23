@@ -45,7 +45,7 @@ function createProcess(year, month) {
     var row = Math.ceil((startDayOfWeek + endDate) / week.length);
 
     var data = 'data\\'+year+'\\'+(month+1)+'.csv'
-    
+
     var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     req.open("get", data, true); // アクセスするファイルを指定
     req.send(null); // HTTPリクエストの発行
@@ -60,9 +60,9 @@ function createProcess(year, month) {
             result[i] = tmp[i].split(',');
         }
 
-        alert(result[1][2]); // 300yen
-        // convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
     }
+
+    alert(result[1][2]); // 300yen
 
     // 1行ずつ設定
     for (var i = 0; i < row; i++) {

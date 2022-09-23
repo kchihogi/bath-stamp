@@ -82,7 +82,7 @@ function createProcess(year, month) {
                     }
                 }
                 if (hit) {
-                    stamp = '<br><img class="stamp" src='+ datamap[index][1] +'alt="Stamp"/>'
+                    stamp = '<br><img class="stamp" src="'+ datamap[index][1] +'" alt="Stamp"/>'
                 }
                 else{
                     stamp = ''

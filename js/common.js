@@ -62,7 +62,8 @@ function createProcess(year, month) {
                 if(year == today.getFullYear()
                   && month == (today.getMonth())
                   && count == today.getDate()){
-                    calendar += "<td class='today'>" + count + "</td>";
+                    stamp = '<img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
+                    calendar += "<td class='today'>" + count + stamp +"</td>";
                 } else {
                     calendar += "<td>" + count + "</td>";
                 }

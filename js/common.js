@@ -49,23 +49,28 @@ function createProcess(year, month) {
         calendar += "<tr>";
         // 1colum単位で設定
         for (var j = 0; j < week.length; j++) {
+            if (true) {
+                stamp = '<br><img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
+            }
+            else{
+                stamp = ''
+            }
             if (i == 0 && j < startDayOfWeek) {
                 // 1行目で1日まで先月の日付を設定
-                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1) + "</td>";
+                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + stamp + "</td>";
             } else if (count >= endDate) {
                 // 最終行で最終日以降、翌月の日付を設定
                 count++;
-                calendar += "<td class='disabled'>" + (count - endDate) + "</td>";
+                calendar += "<td class='disabled'>" + (count - endDate)  + stamp + "</td>";
             } else {
                 // 当月の日付を曜日に照らし合わせて設定
                 count++;
                 if(year == today.getFullYear()
                   && month == (today.getMonth())
                   && count == today.getDate()){
-                    stamp = '<img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
-                    calendar += "<td class='today'>" + count +"<br>"+ stamp +"</td>";
+                    calendar += "<td class='today'>" + count + stamp +"</td>";
                 } else {
-                    calendar += "<td>" + count + "</td>";
+                    calendar += "<td>" + count  + stamp + "</td>";
                 }
             }
         }

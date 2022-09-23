@@ -47,53 +47,52 @@ function createProcess(year, month) {
     var data = 'data\\'+year+'\\'+(month+1)+'.csv'
 
     var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
-    req.open("get", data, true); // アクセスするファイルを指定
+    req.open("get", data, false); // アクセスするファイルを指定
     req.send(null); // HTTPリクエストの発行
 
     // レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ
-    req.onload = function(){
-        var result = []; // 最終的な二次元配列を入れるための配列
-        var tmp = req.responseText.split("\n"); // 改行を区切り文字として行を要素とした配列を生成
+    var result = []; // 最終的な二次元配列を入れるための配列
 
-        // 各行ごとにカンマで区切った文字列を要素とした二次元配列を生成
-        for(var i=0;i<tmp.length;++i){
-            result[i] = tmp[i].split(',');
-        }
+    var tmp = req.responseText.split("\n"); // 改行を区切り文字として行を要素とした配列を生成
 
-        alert(result[1][2]); // 300yen
+    // 各行ごとにカンマで区切った文字列を要素とした二次元配列を生成
+    for(var i=0;i<tmp.length;++i){
+        result[i] = tmp[i].split(',');
+    }
 
-        // 1行ずつ設定
-        for (var i = 0; i < row; i++) {
-            calendar += "<tr>";
-            // 1colum単位で設定
-            for (var j = 0; j < week.length; j++) {
-                if (true) {
-                    stamp = '<br><img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
-                }
-                else{
-                    stamp = ''
-                }
-                if (i == 0 && j < startDayOfWeek) {
-                    // 1行目で1日まで先月の日付を設定
-                    calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + "</td>";
-                } else if (count >= endDate) {
-                    // 最終行で最終日以降、翌月の日付を設定
-                    count++;
-                    calendar += "<td class='disabled'>" + (count - endDate)  + "</td>";
+    alert(result[1][2]); // 300yen
+
+    // 1行ずつ設定
+    for (var i = 0; i < row; i++) {
+        calendar += "<tr>";
+        // 1colum単位で設定
+        for (var j = 0; j < week.length; j++) {
+            if (true) {
+                stamp = '<br><img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
+            }
+            else{
+                stamp = ''
+            }
+            if (i == 0 && j < startDayOfWeek) {
+                // 1行目で1日まで先月の日付を設定
+                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + "</td>";
+            } else if (count >= endDate) {
+                // 最終行で最終日以降、翌月の日付を設定
+                count++;
+                calendar += "<td class='disabled'>" + (count - endDate)  + "</td>";
+            } else {
+                // 当月の日付を曜日に照らし合わせて設定
+                count++;
+                if(year == today.getFullYear()
+                  && month == (today.getMonth())
+                  && count == today.getDate()){
+                    calendar += "<td class='today'>" + count + stamp +"</td>";
                 } else {
-                    // 当月の日付を曜日に照らし合わせて設定
-                    count++;
-                    if(year == today.getFullYear()
-                      && month == (today.getMonth())
-                      && count == today.getDate()){
-                        calendar += "<td class='today'>" + count + stamp +"</td>";
-                    } else {
-                        calendar += "<td>" + count  + stamp + "</td>";
-                    }
+                    calendar += "<td>" + count  + stamp + "</td>";
                 }
             }
-            calendar += "</tr>";
         }
-        return calendar;
+        calendar += "</tr>";
     }
+    return calendar;
 }

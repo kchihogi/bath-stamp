@@ -44,6 +44,26 @@ function createProcess(year, month) {
     var lastMonthEndDate = new Date(year, month, 0).getDate();
     var row = Math.ceil((startDayOfWeek + endDate) / week.length);
 
+    var data = 'data\\'+year+'\\'+(month+1)+'.csv'
+    
+    var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+    req.open("get", data, true); // アクセスするファイルを指定
+    req.send(null); // HTTPリクエストの発行
+
+    // レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ
+    req.onload = function(){
+        var result = []; // 最終的な二次元配列を入れるための配列
+        var tmp = req.responseText.split("\n"); // 改行を区切り文字として行を要素とした配列を生成
+
+        // 各行ごとにカンマで区切った文字列を要素とした二次元配列を生成
+        for(var i=0;i<tmp.length;++i){
+            result[i] = tmp[i].split(',');
+        }
+
+        alert(result[1][2]); // 300yen
+        // convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
+    }
+
     // 1行ずつ設定
     for (var i = 0; i < row; i++) {
         calendar += "<tr>";
@@ -57,11 +77,11 @@ function createProcess(year, month) {
             }
             if (i == 0 && j < startDayOfWeek) {
                 // 1行目で1日まで先月の日付を設定
-                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + stamp + "</td>";
+                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + "</td>";
             } else if (count >= endDate) {
                 // 最終行で最終日以降、翌月の日付を設定
                 count++;
-                calendar += "<td class='disabled'>" + (count - endDate)  + stamp + "</td>";
+                calendar += "<td class='disabled'>" + (count - endDate)  + "</td>";
             } else {
                 // 当月の日付を曜日に照らし合わせて設定
                 count++;

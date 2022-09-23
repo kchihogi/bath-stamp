@@ -1,9 +1,4 @@
 @charset "utf-8";
-
-.row {
-  display: inline-block;
-}
-
 /*全体*/
 .wrapper{
     max-width: 600px;

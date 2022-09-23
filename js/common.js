@@ -60,41 +60,40 @@ function createProcess(year, month) {
             result[i] = tmp[i].split(',');
         }
 
-    }
+        alert(result[1][2]); // 300yen
 
-    alert(result[1][2]); // 300yen
-
-    // 1行ずつ設定
-    for (var i = 0; i < row; i++) {
-        calendar += "<tr>";
-        // 1colum単位で設定
-        for (var j = 0; j < week.length; j++) {
-            if (true) {
-                stamp = '<br><img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
-            }
-            else{
-                stamp = ''
-            }
-            if (i == 0 && j < startDayOfWeek) {
-                // 1行目で1日まで先月の日付を設定
-                calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + "</td>";
-            } else if (count >= endDate) {
-                // 最終行で最終日以降、翌月の日付を設定
-                count++;
-                calendar += "<td class='disabled'>" + (count - endDate)  + "</td>";
-            } else {
-                // 当月の日付を曜日に照らし合わせて設定
-                count++;
-                if(year == today.getFullYear()
-                  && month == (today.getMonth())
-                  && count == today.getDate()){
-                    calendar += "<td class='today'>" + count + stamp +"</td>";
+        // 1行ずつ設定
+        for (var i = 0; i < row; i++) {
+            calendar += "<tr>";
+            // 1colum単位で設定
+            for (var j = 0; j < week.length; j++) {
+                if (true) {
+                    stamp = '<br><img class="stamp" src="stamp\\60fps parrot_gifmagazine.gif" alt="Stamp"/>'
+                }
+                else{
+                    stamp = ''
+                }
+                if (i == 0 && j < startDayOfWeek) {
+                    // 1行目で1日まで先月の日付を設定
+                    calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1)  + "</td>";
+                } else if (count >= endDate) {
+                    // 最終行で最終日以降、翌月の日付を設定
+                    count++;
+                    calendar += "<td class='disabled'>" + (count - endDate)  + "</td>";
                 } else {
-                    calendar += "<td>" + count  + stamp + "</td>";
+                    // 当月の日付を曜日に照らし合わせて設定
+                    count++;
+                    if(year == today.getFullYear()
+                      && month == (today.getMonth())
+                      && count == today.getDate()){
+                        calendar += "<td class='today'>" + count + stamp +"</td>";
+                    } else {
+                        calendar += "<td>" + count  + stamp + "</td>";
+                    }
                 }
             }
+            calendar += "</tr>";
         }
-        calendar += "</tr>";
+        return calendar;
     }
-    return calendar;
 }

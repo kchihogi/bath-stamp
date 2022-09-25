@@ -47,7 +47,7 @@ function createProcess(year, month) {
     var data = 'data\\'+year+'\\'+(month+1)+'.csv'
     var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     req.open("get", data, false); // アクセスするファイルを指定
-    // req.send(null); // sHTTPリクエストの発行
+    req.send(null); // sHTTPリクエストの発行
     var datamap = []; // 最終的な二次元配列を入れるための配列
     if (req.status == 200) {
         var tmp = req.responseText.split("\n"); // 改行を区切り文字として行を要素とした配列を生成

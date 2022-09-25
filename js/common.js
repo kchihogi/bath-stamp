@@ -82,7 +82,7 @@ function createProcess(year, month) {
                     }
                 }
                 if (hit) {
-                    for (let i = 1; i <= datamap[index].length; i++) {
+                    for (let i = 1; i <= (datamap[index].length-1); i++) {
                         stamp += '<br><img class="stamp" src="'+ datamap[index][i] +'" alt="Stamp"/>'
                     }
                 }
